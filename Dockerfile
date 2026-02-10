@@ -18,8 +18,8 @@ COPY . .
 # Set working directory to socket-server
 WORKDIR /app
 
-# Expose socket server port
-EXPOSE 3000
+# Expose port (Render will set PORT env var, but we expose common ports)
+EXPOSE 3000 8080
 
 # Start socket server
 CMD ["node", "index.js"]

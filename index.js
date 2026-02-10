@@ -5,7 +5,7 @@ import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 
 // Use the same database URL as in src/server/prisma.ts
-const databaseUrl = process.env.DATABASE_URL 
+const databaseUrl = process.env.DATABASE_URL
 
 if (!databaseUrl) {
   console.error('DATABASE_URL is not set');
@@ -307,8 +307,9 @@ const PORT = process.env.PORT || process.env.SOCKET_PORT || 3000;
     console.log('✅ Database query test successful');
     
     // Start server only if database connection is successful
-    httpServer.listen(PORT, () => {
-      console.log(`✅ Socket.io server running on port ${PORT}`);
+    // Bind to 0.0.0.0 to allow external connections (required for Render)
+    httpServer.listen(PORT, '0.0.0.0', () => {
+      console.log(`✅ Socket.io server running on port ${PORT} (0.0.0.0)`);
     });
   } catch (error) {
     console.error('❌ Failed to connect to database:', error);
