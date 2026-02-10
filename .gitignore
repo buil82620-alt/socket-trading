@@ -6,6 +6,7 @@ cms/dist/
 cms/.netlify/
 
 # dependencies
+node_modules/
 cms
 
 scripts
