@@ -5,7 +5,7 @@ import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 
 // Use the same database URL as in src/server/prisma.ts
-const databaseUrl = process.env.DATABASE_URL
+const databaseUrl = process.env.DATABASE_URL 
 
 if (!databaseUrl) {
   console.error('DATABASE_URL is not set');
