@@ -13,10 +13,10 @@ RUN npm install
 RUN npx prisma generate
 
 # Copy socket server source code
-COPY socket-server ./socket-server
+COPY . .
 
 # Set working directory to socket-server
-WORKDIR /app/socket-server
+WORKDIR /app
 
 # Expose socket server port
 EXPOSE 3000
