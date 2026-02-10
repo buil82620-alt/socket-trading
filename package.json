@@ -1,0 +1,24 @@
+{
+  "name": "trader-socket-server",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "prisma:generate": "cd .. && npx prisma generate"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.3.0",
+    "pg": "^8.11.5",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "prisma": "^7.3.0"
+  }
+}
