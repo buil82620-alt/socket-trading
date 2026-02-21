@@ -54,6 +54,12 @@ const io = new Server(httpServer, {
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
 
+  // Join a global admin room so CMS can receive system-wide notifications
+  socket.on('join-admin', () => {
+    socket.join('admins');
+    console.log(`Socket ${socket.id} joined admins room`);
+  });
+
   // Handle ping/pong for heartbeat
   socket.on('ping', () => {
     socket.emit('pong');
@@ -115,6 +121,13 @@ io.on('connection', (socket) => {
       console.error('Error joining conversation:', error);
       socket.emit('error', { message: 'Failed to join conversation' });
     }
+  });
+
+  // Internal event from backend: new contract position created
+  // Backend should emit: contract:new-position-internal
+  socket.on('contract:new-position-internal', (data) => {
+    console.log('Internal new contract position:', data);
+    io.to('admins').emit('contract:new-position', data);
   });
 
   // Leave conversation room
